@@ -2,14 +2,13 @@ services:
   minio1:
     image: minio/minio:latest
     hostname: minio1
-    # Gọi tới 3 node, mỗi node có 2 thư mục data1 và data2
     command: server http://minio{1...3}/data{1...2} --console-address ":9001"
     environment:
       - MINIO_ROOT_USER=admin
       - MINIO_ROOT_PASSWORD=password123
     ports:
-      - "9000:9000" # Port cho S3 API
-      - "9001:9001" # Port cho Web Web UI (Console)
+      - "9000:9000"
+      - "9001:9001"
     volumes:
       - minio1-data1:/data1
       - minio1-data2:/data2
@@ -36,7 +35,6 @@ services:
       - minio3-data1:/data1
       - minio3-data2:/data2
 
-# Khai báo các volume ảo để lưu trữ dữ liệu bền vững trên Docker
 volumes:
   minio1-data1:
   minio1-data2:
