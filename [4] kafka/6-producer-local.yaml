@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: producer-local
+  namespace: kafka
+spec:
+  containers:
+  - name: python
+    image: python:3.11-slim
+    command: ["sleep", "infinity"] 
